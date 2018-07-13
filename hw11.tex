@@ -1,0 +1,165 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{float}
+%\usepackage[cm]{fullpage}
+
+\newcommand{\dbar}{d\mkern-6mu\mathchar'26} 
+
+%%%%% TIKZ CODE (For Feynman diagrams)
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{trees}
+\usetikzlibrary{matrix,arrows} 				% For commutative diagram
+											% http://www.felixl.de/commu.pdf
+\usetikzlibrary{positioning}				% For "above of=" commands
+\usetikzlibrary{calc,through}				% For coordinates
+\usetikzlibrary{decorations.pathreplacing}  % For curly braces
+\usetikzlibrary{backgrounds}  				% For showing background grid
+\usepackage{pgffor}							% For repeating patterns
+
+\usetikzlibrary{decorations.pathmorphing}	% For Feynman Diagrams
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{snakes}
+\tikzset{
+	% >=stealth', %% Different kind of arrows
+    vector/.style={decorate, decoration={snake}, draw},
+    fermion/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    fermionbar/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    fermionnoarrow/.style={draw=black},
+    gluon/.style={decorate, draw=
+        decoration={coil,amplitude=4pt, segment length=5pt}},
+    scalar/.style={dashed,draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    scalarbar/.style={dashed,draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    scalarnoarrow/.style={dashed,draw=black},
+%
+%% 	Special vectors (when you need to fine-tune wiggles)
+	provector/.style={decorate, decoration={snake,amplitude=2.5pt}, draw},
+	antivector/.style={decorate, decoration={snake,amplitude=-2.5pt}, draw},
+}
+
+
+
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\textheight 8.6in
+\topmargin -0.5in
+\pagestyle{empty}
+\begin{document}
+
+\vspace*{-1cm}
+\begin{center}
+{\LARGE \bf Relativistic Quantum Field Theory}
+
+\vspace*{0.5cm}
+{\Large Physics 7651} \\
+\vspace*{0.5cm}
+{\Large {\bf Homework 11}\\
+\vspace*{0.5cm}
+Due: In class on Wednesday, November 16}
+\end{center}
+
+
+\noindent\textbf{Reminder:} there will be class this Friday (November 11) and next Friday (November 18) at the usual time. There will be no more discussion sections; graded homeworks may be picked up outside of PSB 432 (next batch will be done by the end of the week). 
+
+\begin{enumerate}
+
+\item {\bf Inverting the operator expansion of the field} [10 points]
+
+Invert the asymptotic identification,
+\begin{align*}
+\frac{1}{\sqrt{Z}}\phi
+\underset{t\to \pm \infty}{\longrightarrow}
+\int \frac{d^3k}{(2\pi)^3 2\omega_k}
+\left(
+e^{-ik\cdot x} \alpha_{\text{in/out}}
++
+e^{ik\cdot x} \alpha_{\text{in/out}}^\dagger
+\right),
+\end{align*}
+to obtain the relation used in our derivation of the LSZ reduction formula in class,
+\begin{align*}
+\frac{i}{\sqrt{Z}} \int d^3x
+\begin{bmatrix}
+e^{ik\cdot x}\\
+e^{-ik\cdot x}
+\end{bmatrix}
+\overleftrightarrow{\partial_0}
+\phi(x)
+\underset{t\to \pm \infty}{\longrightarrow}
+\begin{bmatrix}
+\phantom{+}\alpha(k)\\
+-\alpha^\dag(k)
+\end{bmatrix},
+\end{align*}
+where $A\overleftrightarrow{\partial} B \equiv A\partial B - \partial A B$.
+
+
+
+\item {\bf K\"all\'en--Lehmann form of the propagator} [10 points]
+
+In lecture we saw that we could write the exact propagator in the \textbf{K\"all\'en--Lehmann} form,
+\begin{align}
+\Delta(p^2)
+=
+\frac{i}{p^2-m^2+i\epsilon}
++
+\int_{4m^2}^\infty d\mu^2\,
+\frac{i\sigma(\mu^2)}{p^2-\mu^2+i\epsilon},
+\label{eq:Kallen}
+\end{align}
+where $\sigma(\mu^2)$ is the \textbf{spectral density} function which captures the existence of multiparticle states. (Sometimes the single-particle term is also included in $\sigma$.) 
+We also know that the exact propagator can be written in terms of the 1PI correction, $\Pi(p^2)$,
+\begin{align*}
+\Delta(p^2) = \frac{i}{p^2-m^2-\Pi(p^2)+i\epsilon}.
+\label{eq:1PI}
+\end{align*}
+Explicitly write $\sigma(\mu^2)$ in terms of $\Pi(\mu^2)$. \textit{Hint:} consider using some of the tricks from previous homeworks. At one-loop order, plot the spectral density for a real scalar field with a cubic self-interaction. How would this change for a quartic self-interaction?
+
+%\begin{enumerate}
+%\item Find $\sigma(\mu^2)$ as a function of $\text{Im}\Delta$. (May set $s>4m^2$ to ignore poles from bound states...)
+%\item Sketch $\sigma(\mu^2)$ for a theory of a real scalar with a $\phi^3$ interaction.
+%\end{enumerate}
+%
+%Do this in $\phi^3$.
+%
+%\begin{align*}
+%\sigma(k^2)\Theta(k^0) = (2\pi)^3 \sum_n \delta^{(4)}(k-p_n)\left|\langle 0 |\Phi(0) | n\rangle\right|^2.
+%\end{align*}
+%
+\item {\bf There's nothing special about $\phi$.} [10 points] 
+
+One consequence of our reformulation of scattering in terms of Green's functions is that it doesn't matter what local field we assign to a particle---\textit{any} field that has a properly normalized vacuum-to-one-particle matrix element will give the right $S$-matrix. 
+
+Consider the theory of a free scalar field,
+\begin{align*}
+ \mathcal L = \frac 12 (\partial \phi)^2 - \frac 12 m^2 \phi^2.
+\end{align*}
+Now define a new field, $A$, by $\phi = A + \frac 12 g A^2$, so that the Lagrangian may be written,
+\begin{align*}
+\mathcal L = \frac 12 (\partial A)^2 (1+gA)^2 - \frac 12 m^2 \left(A+\frac 12 g A^2\right)^2.
+\end{align*}
+If you were minding your own business waiting for the QFT homework to be posted and were suddenly accosted by this Lagrangian, you might be scared that it describes some highly nontrivial theory with complicated nonzero scattering amplitudes. Of course, you have no such trepidations since you already know that this complicated Lagrangian has humble origins and that it this theory---however intiidating it may look in this form---must predict vanishing scattering. Verify this by actually summing up all graphs that contribute to $2\to 2$ elastic scattering of $A$ particles to $\mathcal O(g^2)$. 
+
+\textit{Remarks:}
+\begin{enumerate}
+\item Our general theory does \textit{not} tell us that the $A$-field Green's functions are the same as the $\phi$-field Green's functions, so the amplitudes won't vanish unless the external lines are on shell.
+\item To the order in which we are working we can ignore mass and wavefunction renormalization. 
+\item This is a theory with derivative interactions. As you know from previous homeworks, we must tiptoe around subtleties: $\mathcal L_\text{int} \neq \mathcal H_\text{int}$ and one can't naively pull derivatives out of the time ordering in Dyson's formula. As before, treat the theory as if the interaction was $i$ times the interaction Lagrangian and as if every derivative became a factor of $-ip_\mu$ for an incoming momentum and $ip_\mu$ for an outgoing one.
+\end{enumerate}
+
+
+
+%
+\end{enumerate}
+ 
+
+\end{document}

@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\textheight 8.6in
+\topmargin -0.5in
+\pagestyle{empty}
+\begin{document}
+
+\vspace*{-1cm}
+\begin{center}
+{\LARGE \bf Relativistic Quantum Field Theory}
+
+\vspace*{0.5cm}
+{\Large Physics 7651} \\
+\vspace*{0.5cm}
+{\Large {\bf Homework 4}\\
+\vspace*{0.5cm}
+Due: In class on Wednesday, Sept. 28}
+\end{center}
+\begin{enumerate}
+
+\item  {\bf The Spin-Statistics Theorem and CPT} [5 points]
+
+
+\begin{enumerate}
+	\item \textbf{Can a scalar field describe fermions?}.
+	Unlike bosons, fermions obey \textit{anti-commutation} relations.
+	Compare the quantization of a free scalar field using canonical commutation $(-)$ versus anti-commutation $(+)$ relations,
+	\begin{align*}
+		\left[a_\mathbf{k},a^\dag_{\mathbf{k'}}\right]_{\mp} = \delta^{(3)}\left(\mathbf{k}-\mathbf{k'}\right).
+	\end{align*}
+	Calculate the (anti-)commutatator of the field for spatial separations $(x-x')^2=-r^2<0$. What can you conclude about the choice of using commutators or anti-commutators for a scalar field based on the requirement of causality? 
+	\item \textbf{CPT theorem for complex scalars}. Argue that for an arbitrary \textit{interacting} Lagrangian theory of complex scalar fields $\psi_i$ and real scalar fields $\phi_a$ that CPT is a good symmetry.
+\end{enumerate}
+
+\vspace*{0.5cm}
+
+
+\item \textbf{An explicit form for the parity operator} [5 points]
+%
+A scalar field $\phi$ transforms under parity as
+\begin{align}
+	\phi(\mathbf{x},t) \to P\phi(\mathbf{x},t)P^{-1} = \eta_P \phi(-\mathbf{x},t),\label{eq:parity:transform}\tag{\textasteriskcentered}
+\end{align}
+ where $\eta = \pm 1$ is the \textbf{intrinsic parity} of the field. In this problem we will demonstrate an explicit expression for the parity operator $P$ in terms of creation and annihilation operators. Define the operator exponentiations
+$$P_1 = \exp\left[-i\frac{\pi}{2} \sum_\mathbf{k} a^\dag_\mathbf{k}a_\mathbf{k}\right]
+\qquad\qquad
+P_2 = \exp\left[i\frac{\pi}{2}\eta_P \sum_\mathbf{k} a^\dag_\mathbf{k}a_{-\mathbf{k}}\right].$$
+Prove that
+$$P_1 a_\mathbf{k} P_1^{-1} = -ia_\mathbf{k} \qquad\qquad\qquad
+P_2 a_\mathbf{k} P_2^{-1} = i\eta_P a_{-\mathbf{k}}$$ % Check signs
+and show that the operator $P=P_1P_2$ is unitary and satisfies (\ref{eq:parity:transform}), i.e.\ $P_1P_2$ gives an explicit expression for the parity operator.  \textit{Hint}: Use the fact that for any operators $A$ and $B$,
+$$e^{i\alpha A} B e^{-i\alpha A} = \sum_{n=0}^\infty \frac{(i\alpha)^n}{n!}B_n
+\qquad\qquad\text{where } B_0=B,\quad B_n=[A,B_{n-1}].
+$$
+%where $B_0=B$, $B_n=[A,B_{n-1}]$. 
+
+
+ \vspace*{0.5cm}
+
+\item {\bf C, P, and T for the Schr\"odinger field} [10 points]
+%
+The charge-conjugation $C$, parity $P$, and time-reversal $T$ operators act on a complex scalar field $\psi(\mathbf{x},t)$ via
+\begin{align*}
+	C \psi(\mathbf{x},t) C^{-1} &= \psi^*(\mathbf{x},t),\\
+	P \psi(\mathbf{x},t) P^{-1} &= \psi(-\mathbf{x},t),\\
+	T \psi(\mathbf{x},t) T^{-1} &= \psi(\mathbf{x},-t),
+\end{align*}
+where $C$ and $P$ are unitary while $T$ is anti-unitary. Recall the Sch\"odinger field theory that you quantized in Problem 4 of Homework 3. In this non-relativistic theory, only two of these three operators exist---which two? Define these two operators in terms of their action on creation and annihilation operators.
+
+
+
+ \vspace*{0.5cm}
+
+\item {\bf Coherent states} [10 points]
+%
+Coherent states have many applications across physics. In this problem we will work out some of their properties. It is sufficient to consider a single harmonic oscillator; the generalization to a free field (\textit{many} oscillators) is trivial. Let $H=\frac{1}{2}(p^2+q^2)$ and---as usual---define creation and annihilation operators,
+$$
+a=\frac{q+ip}{\sqrt{2}}
+\qquad \qquad \qquad
+a^\dag=\frac{q-ip}{\sqrt{2}}.
+$$
+Define the coherent state $|z\rangle$ by
+% $$
+$|z\rangle = Ne^{za^\dag}|0\rangle$,
+% $$
+where $z$ is a complex number and $N$ is a real positive constant such that $\langle z | z \rangle = 1$.
+\begin{enumerate}
+	\item Find $N$ and compute $\langle z|z'\rangle$.
+	\item Show that $|z\rangle$ is an eigenstate of $a$ and find its eigenvalue. (\textit{Hint}: $a$ is not Hermitian so that its eigenstates may be non-orthogonal with complex eigenvalues.)
+	\item The set of all coherent states for all values of $z$ is not only complete, but it's \textit{over}-complete: the energy eigenstates can be constructed by taking successive derivatives at $z=0$, so the coherent states with $z$ in some small real interval around the origin are already enough. Despite this, show that there is a completeness relation,
+	\begin{align*}
+		1 = \alpha \int d\text{Re}z\, d\text{Im}z\;  e^{-\beta z^* z}|z\rangle\langle z |
+	\end{align*}
+	and find the real constants $\alpha$ and $\beta$. \text{Hint:} evaluate this equation between arbitrary coherent states.
+	\item Show that for any polynomial in two variables, $F(p,q)$,
+	\begin{align*}
+		\langle z | \; : \; F(p,q)\; : \; | z\rangle = F(\bar p, \bar q),
+	\end{align*}
+	and find the real numbers $\bar p$ and $\bar q$ in terms of $z$.
+	\item In the $q$-representation, the statement that $|z\rangle$ is an eigenstate of $a$ with known eigenvalue is a first-order diffential equation for $\langle q | z\rangle$, which is the position-space wave-function of $|z\rangle$. Solve this equation and find the wave function. For simplicity, don't bother with overall normalization factors.
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}

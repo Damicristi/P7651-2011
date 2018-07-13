@@ -1,0 +1,218 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{float}
+%\usepackage[cm]{fullpage}
+
+\newcommand{\dbar}{d\mkern-6mu\mathchar'26} 
+
+%%%%% TIKZ CODE (For Feynman diagrams)
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{trees}
+\usetikzlibrary{matrix,arrows} 				% For commutative diagram
+											% http://www.felixl.de/commu.pdf
+\usetikzlibrary{positioning}				% For "above of=" commands
+\usetikzlibrary{calc,through}				% For coordinates
+\usetikzlibrary{decorations.pathreplacing}  % For curly braces
+\usetikzlibrary{backgrounds}  				% For showing background grid
+\usepackage{pgffor}							% For repeating patterns
+
+\usetikzlibrary{decorations.pathmorphing}	% For Feynman Diagrams
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{snakes}
+\tikzset{
+	% >=stealth', %% Different kind of arrows
+    vector/.style={decorate, decoration={snake}, draw},
+    fermion/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    fermionbar/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    fermionnoarrow/.style={draw=black},
+    gluon/.style={decorate, draw=
+        decoration={coil,amplitude=4pt, segment length=5pt}},
+    scalar/.style={dashed,draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    scalarbar/.style={dashed,draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    scalarnoarrow/.style={dashed,draw=black},
+%
+%% 	Special vectors (when you need to fine-tune wiggles)
+	provector/.style={decorate, decoration={snake,amplitude=2.5pt}, draw},
+	antivector/.style={decorate, decoration={snake,amplitude=-2.5pt}, draw},
+}
+
+
+
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\textheight 8.6in
+\topmargin -0.5in
+\pagestyle{empty}
+\begin{document}
+
+\vspace*{-1cm}
+\begin{center}
+{\LARGE \bf Relativistic Quantum Field Theory}
+
+\vspace*{0.5cm}
+{\Large Physics 7651} \\
+\vspace*{0.5cm}
+{\Large {\bf Homework 10}\\
+\vspace*{0.5cm}
+Due: In class on Wednesday, November 8}
+\end{center}
+
+
+
+\begin{enumerate}
+
+
+
+\item {\bf Feynman parameterization} [5 points]
+
+Prove Feynman's parameterization for $n$ terms,
+\begin{align*}
+\frac{1}{A_1 A_2\cdots A_n}
+=
+\int_0^1 dx_1\cdots dx_n 
+\, \delta(\sum x_i -1)
+\frac{(n-1)!}{\left[x_1 A_1+x_2A_2 + \cdots + x_n A_n\right]^n}
+\end{align*}
+\textit{Hint:} one way to do this is to use the relation $A^{-1} = \int_0^\infty d\alpha\, e^{-\alpha A}$.
+
+\vspace{.5em}
+
+\item {\bf Scattering in $\phi^4$ at loop level} [10 points]
+
+In Homework 9 you started thinking about the loop structure of $\phi^4$ theory. Here we'll follow up with the technical details. 
+
+\begin{enumerate}
+\item State the on-shell renormalization conditions for this theory, i.e.\ where the coupling is defined by an experiment performed at threshold. 
+\item Draw all $\mathcal O(\lambda)$ contributions to the two-point amplitude. Evaluate the loop diagram by using a momentum cutoff, $k_E<\Lambda$. Give the explicit values for $\delta_Z$ and $\delta_{m^2}$ at this order in pertubation theory.
+\item Now consider the $\mathcal O(\lambda^2)$ contributions to the four-point amplitude. Calculate these diagrams with a momentum cutoff\footnote{There are also $\mathcal O(\lambda^2)$ contributions to the two-point amplitude, but these are at higher order in the loop expansion. For extra credit, evaluate these diagrams. Don't expect \textit{any} help whatsoever from the grader.}. Evaluate the Feynman parameter integral.
+\item Using the on-shell renormalization conditions, write the explicit form of the counter terms and give the expressions for the physical field, mass, and coupling.
+\item Write out the one-loop amplitude for $2\to 2$ scattering. Don't go out of your way to try to combine terms or write them out in terms of angles, but do combine logarithms where applicable. Does this answer depend on the value of $\Lambda$?
+\item What happens when the energy scale of the external momenta are very different from the energy scale at which the renormalization conditions are defined? Comment on the validity of perturbation theory\footnote{If this makes you unhappy, then good! The solution to this apparent problem is referred to as the resummation of logarithms or renormalization group improved perturbation theory.}.
+\item How would your result in (c) change if this were a theory of a complex scalar with interaction term $\mathcal L_\text{int} = \frac{\lambda}{4}\left(\phi^\dag\phi\right)^2$? \textit{Hint:} this is a trivial modification.
+\end{enumerate}
+
+\vspace{.5em}
+
+
+\item {\bf Two-particle unitarity} [5 points]
+
+In class we reviewed the calculation of the loop-level two-point function for a real scalar field $\phi$ with interaction $\mathcal L_\text{int} = \frac 1{3!}\lambda \phi^3$. We found
+\begin{align}
+-i\Pi(p^2) = -\frac{i\lambda^2}{32\pi^2} \int_0^1 dx
+\left\{
+\ln \left[
+\frac{m^2-x(1-x)p^2 - i\epsilon}{m^2\left(1-x(1-x)\right)}
+\right]
++ \frac{(p^2-m^2)x(1-x)}{m^2\left(1-x(1-x)\right)}
+\right\}.\label{eq:phi3:Pi}
+\end{align}
+Based on unitarity, we know that $\Pi$ should have a cut along the positive real axis in the complex $p^2$ plane corresponding to on-shell intermediate states. Calculate the discontinuity across this cut and confirm that it matches what we expect from the optical theorem, that is
+\[
+\text{Disc}\ \Pi(p^2) = -\frac{i\lambda^2}{16\pi} \sqrt{\frac{p^2-4m^2}{p^2}}\Theta(p^2-4m^2)
+\]
+\textit{Hint:} the $i\epsilon$ is important to get the right sign.
+
+\textit{Remark:} Compare this to Problem 2 of Homework 8. There we had essentially the same loop but approached the calculation of the discontinuity indirectly.
+
+
+\item {\bf Introduction to dimensional regularization} (by popular request) [10 points]
+
+A `hard momentum cutoff' $k< \Lambda$ is a physically intuitive way of regularizing divergent integrals. However, it can lead to problems because it breaks Lorentz invariance. Here we will introduce an alternate regulators that is commonly used, dimensional regularization (``dim reg''). The idea is that since amplitudes are meromorphic functions of the spacetime dimension $d$, onecan regulate divergences by working $d$ as a continuous complex parameter. Integrals which are divergent in $d=4$ are convergent for sufficiently small $d$ and one may then define the value at $d=4$ by analytic continuation. For logarithmic divergences it is sufficient to go to $d=4-\epsilon$, but it turns out that this is also sufficient for power law divergences. The dimensionless parameter $\epsilon^{-1}$ replaces $\Lambda$ as a regulator.
+
+In this problem we'll begin to explore this technique, though you'll get more mileage out of it when you calculate loops in gauge theories next semester\footnote{For those who want a more rigorous introduction, see \textit{Renormalization} by Collins, ``Renormalizing the Standard Model'' by Jegerlehner (Google it), or Rev. Mod. Phys. 47, 849–876 (1975). For technical examples pick your favorite QFT textbook.}
+
+First we need to familiarize ourselves with the $\Gamma$ function,
+\begin{align*}
+\Gamma(\alpha)=\int_0^\infty dx\, x^{\alpha-1} e^{-x}.
+\end{align*}
+This is a generalization of the factorial. One may see from the recursion relation,
+\begin{align*}
+\Gamma(\alpha)= \frac{1}{\alpha}
+\int_0^\infty dx \left(\frac{d}{dx} x^\alpha\right) e^{-x} 
+= \frac{1}{\alpha}\left[x^\alpha e^{-x}\right]^\infty_0 + 
+\frac{1}{\alpha}\int_0^\infty dx\, x^\alpha e^{-x}
+= \frac{1}{\alpha}\Gamma(\alpha+1).
+\end{align*}
+The $\Gamma$ function has isolated simple poles for $\alpha = 0, -1, -2, \ldots$. Near a pole, the $\Gamma$ function can be expanded as
+\begin{align*}
+\Gamma(\epsilon) = \frac{1}{\epsilon} - \gamma + \mathcal O(\epsilon),
+\end{align*}
+where $\gamma\approx 0.5772$ is the Euler-Mascheroni constant and is utterly uninteresting.
+
+The $\Gamma$ function pops up in two places in loop integrals. First in the angular integral for a $d$-dimensional unit sphere,
+\begin{align*}
+S_d = \int d\Omega_d = \frac{2\pi^{d/2}}{\Gamma(d/2)}.
+\end{align*}
+The second place where the $\Gamma$ functions shows up is in the radial part of the loop integral. This shows up as a $B$ function,
+\begin{align*}
+B(\alpha,\beta) = \int_0^1 dx\, x^{\alpha-1} (1-x)^{\beta-1} = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}.
+\end{align*}
+
+
+
+\begin{enumerate}
+\item \textsc{The master equation}. Let's start by proving a general and important result:
+\begin{align}
+\int \frac{d^d \ell}{(2\pi)^d}
+\frac{(\ell^2)^a}{(\ell^2+\Delta)^b}
+=
+\frac{
+\Gamma(b-a-\frac 12 d)\Gamma(a+\frac 12 d)
+}{
+(4\pi)^{d/2}\Gamma(b)\Gamma(d/2)
+}
+\frac{1}{\Delta^{b-a-d/2}}\label{eq:dimreg:master}
+\end{align}
+First separate this into an angular and radial integral. Perform the angular integral and note that for a given $d$, this is a common prefactor that comes along with each loop\footnote{This prefactor helps improve the perturbation expansion. It also allows you to estimate loop integrals by throwing in powers of coupling constants and $16\pi^2$ and waving your hands.}. Perform the radial integral using whatever tricks you can muster. I can think of at least two approaches: either use the same hint as in Problem 1, or do a change of variables $y = \Delta/(\ell^2+\Delta)$ and use the $B$ function. Check that the master equation gives the same results for some of the formulae in the appendix of Peskin \& Schroeder.
+
+
+\item Now let's put this into action. Return to the familiar $\phi^3$ theory in $d=4$. To dimensionally regularize this theory we need to pass to $d=4-\epsilon$ dimensions. What is the dimension of the coupling $\lambda$ in $\phi^3$ theory in $d=4$? What is the dimension of $\lambda$ in $d=4-\epsilon$? To maintain the `normal' dimension of the coupling, make the replacement $\lambda \to \lambda \mu^a$ where $\mu$ is an \textit{arbitrary} scale and $a$ is chosen so that $[\lambda]$ is the same for $d=4$ and $d=4-\epsilon$. What is $a$?
+
+\item Perform the now-familiar loop calculation of the one-loop correction to the 1PI function. Follow the steps in class leading up to (\ref{eq:phi3:Pi}) above. Do the Feynman parameterization (don't perform the Feynman parameter integral) to get a loop integral of the form (\ref{eq:dimreg:master}). Be careful to inclue the prefactors that depend on $\mu$. Write everything in terms of $\Gamma$ functions and to integer powers times quantities to infinitesimal powers. Simplify the latter by Taylor expanding $y^{\epsilon}$.
+
+\item Identify the divergences and write out the counter terms for `on shell' renormalization conditions. Compare the final expressions to the hard cutoff calculation performed in class. Comment on the role of the arbitrary mass $\mu$: what would have happened if we had neglected $\mu$ in our calculations (e.g.\ consider the arguments of logarithms)? %If we want a well behaved perturbation expansion, how should we choose $\mu$ relative to the energy scale of an amplitude?
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+%
+%\item {\bf Effective Field Theory} [5 points]
+%
+%Consider a theory with two real scalar fields $\phi$ with mass $m$ and $\varphi$ with mass $M$. Assume that $m\ll M$. The two fields have an interaction Lagrangian, $\mathcal L_\text{int} = \frac g2 \phi^2 \varphi$. In this simple universe, a group of physicists build a large scalar collider to collide beams of $\phi$ particles. Unfortunately, the energies collider isn't energetic enough to produce $\varphi$ particles. For simplicity assume $m^2 \ll E_\text{cm}^2 \ll M^2$.
+%
+%Heavy field integrated out to give non-renormalizable theory.
+%\begin{align*}
+%\mathcal L = \frac 12 (\partial \phi)^2 + \frac 12 (\partial \varphi)^2 + \frac 12 m^2\phi^2 + \frac 12 M^2\varphi^2 + \frac g2 \phi^2 \varphi
+%\end{align*}
+%
+%Something about universality.
+%
+%Calculate loop level correction?
+%
+%Maybe do something where cutoff points to strong coupling scale?
+%
+%Problem: it'd be nice to do a loopy EFT question, but without renomralized perturbation theory this doesn't make sense because you have large logarithms.
+%
+%Maybe do this for $\varphi^3\phi$ interaction. 6-point interaction at loop level: EFT vs full.
+%
+\end{enumerate}
+ 
+
+\end{document}

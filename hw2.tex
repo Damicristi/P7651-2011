@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\textheight 8.6in
+\topmargin -0.5in
+\pagestyle{empty}
+\usepackage{amssymb,amsmath}
+
+\begin{document}
+
+\vspace*{-1cm}
+\begin{center}
+{\LARGE \bf Relativistic Quantum Field Theory}
+
+\vspace*{0.5cm}
+{\Large Physics 7651} \\
+\vspace*{0.5cm}
+{\Large {\bf Homework 2. }\\
+\vspace*{0.5cm}
+Due: In on Wednesday, Sept. 14 to Flip Tanedo's mailbox}
+\end{center}
+
+{\bf Reminder: make-up class on Friday, Sept. 9 8:3-10 am in Rock 105. No class on Wednseday, Sept. 14}
+
+
+\begin{enumerate}
+
+\item  {\bf Explicit expression of correlator} 
+
+We have used the correlator 
+\[ \langle 0| \Phi (x) \Phi (y) |0\rangle = \Delta_+(x-y)= \int \frac{d^3 k}{(2\pi )^32 \omega_k }e^{-i k\cdot (x-y)} \]
+many times in class when discussing causality. Find an explicit expression for $\Delta_+ (r)$ in terms of Bessel functions for space-like $x$ with $x^2=-r^2<0$.  
+
+
+\vspace*{0.5cm}
+
+\item {\bf Time ordered product as Green's function}
+
+The time-ordered product of two fields $A(x)$ and $B(x)$ is defined by
+% \begin{eqnarray}
+% T[A(x) B(y)]& =& A(x) B(y) \  \ {\rm for } \  \  x^0>y^0 \nonumber \\ 
+% & = & B(y) A(x) \  \  {\rm for } \  \  y^0>x^0 \nonumber 
+% \end{eqnarray}
+\begin{align*}
+	T\left[A(x)B(y)\right] &= \left\{
+		\begin{array}{ll}
+			A(x)B(y) & \quad \text{for } x^0 > y^0\\
+			B(y)A(x) & \quad \text{for } x^0 < y^0
+		\end{array}
+	\right.
+\end{align*}
+
+Using only the field equation and the equal time commutation relations, show that for a free scalar field $\Phi$ with mass $m$,
+\[ (\square_x +m^2) \langle 0|T[ \Phi (x)\Phi(y)|0\rangle = c \delta^4 (x-y) ,\]
+and find the proportionality constant $c$.
+
+ \vspace*{0.5cm}
+
+\item {\bf Feynman propagator}
+
+Show that 
+\[ \langle 0| T[\Phi(x)\Phi(y) ]|0\rangle = \lim_{\epsilon\to 0^+} \int \frac{d^4k}{(2\pi)^4} e^{-ik\cdot (x-y)} \frac{-c}{k^2-m^2+i\epsilon}.\]
+
+The limit symbol indicates that $\epsilon$ goes to zero through positive values. If the $\epsilon$ were not present the integral would be ill-defined, because it would have poles in the domain of integration. Hint: Do the $k^0$ integration and compare with the expression for the left-hand side obtained by inserting a complete set of intermediate states. Here you can use anything we know about the field $\Phi$.
+  
+\end{enumerate}
+
+\end{document}

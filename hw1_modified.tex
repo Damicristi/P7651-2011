@@ -1,0 +1,117 @@
+\documentstyle[12pt]{article}
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\textheight 8.6in
+\topmargin -0.5in
+\pagestyle{empty}
+\begin{document}
+
+\vspace*{-1cm}
+\begin{center}
+{\LARGE \bf Relativistic Quantum Field Theory}
+
+\vspace*{0.5cm}
+{\Large Physics 7651} \\
+\vspace*{0.5cm}
+{\Large {\bf Homework 1. }\\
+\vspace*{0.5cm}
+Due: In class on Wednesday, Sept. 7.}
+\end{center}
+\begin{enumerate}
+
+\item  {\bf Getting used to the new units} 
+
+Here are a few exercises to get some 
+feel for the system of units we will use in this class, $c=\hbar=1$.
+
+\begin{enumerate}
+
+\item What is the length of an Olympic swimming pool (50 m) expressed in 
+eV$^{-1}$?
+
+\item Find the frequency (in sec) and the wavelength (in cm) of a photon with 
+an energy of 1 GeV.  
+
+\item What is the value (including the units) of the Newton's gravitational 
+constant $G_N$ in our new system? The {\it ``Planck mass''} is defined by 
+$M_{\rm Pl}=(G_N)^\alpha$, and its units should be obvious from the name.
+Find $\alpha$ and $M_{\rm Pl}$ (in GeV). Find the wavelength (in cm) of a 
+photon whose energy is equal to $M_{\rm Pl}$ -- the so-called {\it ``Planck 
+distance''}. 
+
+\item At what temperature (in K) does a gas of electrons become relativistic? 
+How does it compare with the temperature at the center of the Sun? 
+({\bf Hint:} if you don't remember how hot the Sun is, use Google to find out!)
+
+
+\end{enumerate}
+
+
+ \vspace*{0.5cm}
+
+\item {\bf Momentum operator}
+
+  Work out the expression for the physical momentum operator ${\bf P}$
+(see Eq.~(2.19) of P\&S) in terms of the creation and annihilation operators 
+$a_{\bf p}$ and $a_{\bf p}^\dagger$ in the case of {\em real} Klein-Gordon 
+field. Compute ${\bf P}\left|{\bf p}\right>$, where $\left|{\bf p}\right>=
+\sqrt{2E_{\bf p}}a_{\bf p}^\dagger \left|0\right>$. Does this calculation 
+support our interpretation of $\left|{\bf p}\right>$ as a state with one 
+particle of definite momentum?
+
+ \vspace*{0.5cm}
+
+\item {\bf The Casimir effect}
+
+In this question we study a simplified form of the Casimir effect. The real Casimir effect describes the force between two grounded electromagnetic plates in the absence of an electric field due to the vacuum energy of the electromagnetic field. Here you are asked to follow this calculation for a massless real scalar field instead. 
+
+Assume that you have three plates. The locations
+of the plates are at $x=0$, $x=d$, and $x=L$ such that $d \ll L$. 
+%Assume that analogously to a grounded EM plate the scalar field on our plate is vanishing. 
+Assume that the scalar field vanishes on the plates; this is analogous to grounding the electromagnetic plates.
+We then want to find the force acting on the middle plate. Since we assume that the plates are infinite in the $y,z$ directions we will neglect any modes in those directions. 
+ 
+In this simple case only modes with 
+\begin{equation}
+k={n \pi \over d}, \qquad n=1,2,...,\infty, 
+\end{equation}
+are allowed. (For the other two plates just replace $d$ with $L-d$.)  The
+ energy of each mode is $k/2$. The total energy is therefore
+\begin{equation} \label{ediv}
+E=f(d)+f(L-d),\qquad f(d)={\pi \over 2 d} \sum_{n=1}^\infty n
+\end{equation}
+
+\begin{enumerate}
+\item
+We first need to find an finite expression for the energy. Clearly,
+(\ref{ediv}) diverges, but this is not physical. Modes with very
+large $k$ do not see the plate and so should not be included in the sum.
+At the end we vary $d$, so modes that do not feel the plate do not
+feel the variation. Thus we introduce a
+cutoff that will regulate the sum by introducing $a$ such that 
+% \begin{equation} \label{fineee}
+% E(n) = {n \pi \over 2 d} \to 
+%  {n \pi \over 2 d} e^{-a n \pi/d}
+% \end{equation}
+\begin{equation} \label{fineee}
+f(d)={\pi \over 2 d} \sum_{n=1}^\infty n \, e^{-a n \pi/d}
+% E(n) = {n \pi \over 2 d} \to 
+%  {n \pi \over 2 d} e^{-a n \pi/d}
+\end{equation}
+
+With (\ref{fineee}) the total energy is finite. Calculate this energy explicitly. 
+
+\item
+We assume that $a \ll d$. Expand the result in powers of $a/d$ keeping
+the first two terms.
+
+\item
+Calculate the force on the middle plate. At the end take $a\to 0$ and
+$L \to \infty$ and check that your result is finite.
+
+\end{enumerate}
+ 
+\end{enumerate}
+
+\end{document}

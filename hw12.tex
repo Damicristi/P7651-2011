@@ -1,0 +1,233 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{bbm}
+%\usepackage[cm]{fullpage}
+
+\newcommand{\dbar}{d\mkern-6mu\mathchar'26} 
+
+%%%%% TIKZ CODE (For Feynman diagrams)
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{trees}
+\usetikzlibrary{matrix,arrows} 				% For commutative diagram
+											% http://www.felixl.de/commu.pdf
+\usetikzlibrary{positioning}				% For "above of=" commands
+\usetikzlibrary{calc,through}				% For coordinates
+\usetikzlibrary{decorations.pathreplacing}  % For curly braces
+\usetikzlibrary{backgrounds}  				% For showing background grid
+\usepackage{pgffor}							% For repeating patterns
+
+\usetikzlibrary{decorations.pathmorphing}	% For Feynman Diagrams
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{snakes}
+\tikzset{
+	% >=stealth', %% Different kind of arrows
+    vector/.style={decorate, decoration={snake}, draw},
+    fermion/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    fermionbar/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    fermionnoarrow/.style={draw=black},
+    gluon/.style={decorate, draw=
+        decoration={coil,amplitude=4pt, segment length=5pt}},
+    scalar/.style={dashed,draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    scalarbar/.style={dashed,draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    scalarnoarrow/.style={dashed,draw=black},
+%
+%% 	Special vectors (when you need to fine-tune wiggles)
+	provector/.style={decorate, decoration={snake,amplitude=2.5pt}, draw},
+	antivector/.style={decorate, decoration={snake,amplitude=-2.5pt}, draw},
+}
+
+
+
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\textheight 8.6in
+\topmargin -0.5in
+\pagestyle{empty}
+\begin{document}
+
+\vspace*{-1cm}
+\begin{center}
+{\LARGE \bf Relativistic Quantum Field Theory}
+
+\vspace*{0.5cm}
+{\Large Physics 7651} \\
+\vspace*{0.5cm}
+{\Large {\bf Homework 12}\\
+\vspace*{0.5cm}
+Due: In class on Wednesday, November 23}
+\end{center}
+
+\noindent Please e-mail Flip (\texttt{pt267@cornell.edu}) with any corrections. If you want, you may turn these in after Thanksgiving break, but there \textit{will} be another homework assigned on the 23$^\text{rd}$.
+
+\begin{enumerate}
+
+\item {\bf Algebra of the Lorentz and conformal groups} [10 points]
+
+\begin{enumerate}
+
+\item Recall that the generators of the Lorentz group may be written as $\left(S_{\mu\nu}\right)^{\lambda\rho} = i\left(\delta^\lambda_\mu \delta^\rho_\nu - \delta^\lambda_\nu \delta^{\rho}_{\mu}\right).$
+Show that
+\begin{align}
+[S_{\mu\nu},S_{\omega\rho}]
+=
+-i (g_{\mu\omega} S_{\nu\rho} + g_{\nu\rho} S_{\mu\omega} - g_{\mu\rho} S_{\nu\omega} - g_{\nu\omega} S_{\mu\rho})
+\label{eq:Lorentz:Algebra}
+\end{align}
+
+\item These generators may be written in a more familiar way in terms of rotations $J^i$ and boosts $K^j$, $S^{ik} = \epsilon^{ik\ell} J^{\ell}$ and $S^{0i} = -S^{i0} = K^i$. Show that the commutation relations for these generators are
+\begin{align*}
+[J^i, J^k] \,&= \phantom{+}i\epsilon^{ik\ell} J^\ell\\
+[J^i,K^k]\,&= \phantom{+}i\epsilon^{ik\ell} K^\ell\\
+[K^i, K^k] \,&= -i\epsilon^{ik\ell} J^\ell.
+\end{align*}
+
+\item Show that the generators of rotations are antisymmetric and that the generators of boosts are symmetric.
+
+\item We saw in class that the Poincar\'e group can be represented by $5\times 5$ matrices acting on vectors $(x^0,x^1,x^2,x^3,1)$. These matrices take the form
+$$g(b,\Lambda) = 
+\begin{pmatrix}
+ \Lambda & b \\
+ 0 & 1
+\end{pmatrix},$$
+where $\Lambda$ is the Lorentz transformation and $b$ is the four-vector translation. Write out the group multiplication law for $g$; i.e.\ find $c$ and $D$ for which
+$$g(b',\Lambda') g(b,\Lambda) = g(c,D).$$
+Show that a Poincar\'e transformation decomposes as $g(b,\Lambda)=g(b,\mathbbm{1}) g(0,\Lambda)$.
+
+\item Show that $g(0,\Lambda) g(b,\mathbbm{1}) g(0,\Lambda)^{-1} = g(\Lambda b,0)$ and show that the group of translations forms an invariant subgroup of the Poincar\'e group.
+
+
+%\item The Lorentz group is not the most general symmetry group for our field representations. We may extend this with additional bosonic generators to the \textbf{conformal group} whose infinitesimal generators are
+%\begin{align*}
+% P_\mu\phantom{\nu} &= -i\partial_\mu \\
+% D\phantom{_{\mu\nu}} &= -ix^\mu \partial_\mu\\
+% L_{\mu\nu} &= \phantom{+} i(x_\mu\partial_\nu - x_\nu\partial_\mu)\\
+% S_\mu\phantom{_\nu} &= -i(2x_\mu x^\nu \partial_\nu - x^2\partial_\mu),
+%\end{align*}
+%these correspond to translations, dilations, Lorentz transformations, and special conformal transformations. Show that these obey the conformal algebra:
+%\begin{align*}
+%[D,P_\mu] &= iP_\mu\\
+%[D,K_\mu] &= -iK_\mu\\
+%[K_\mu,P_\nu] &= 2i(g_{\mu\nu} D - S_{\mu\nu})\\
+%[K_\rho,S_{\mu\nu}] &=i(g_{\rho\mu}K_\nu - g_{\rho\nu}K_\mu)\\
+%[P_\rho,S_{\mu\nu}] &= i(g_{\rho\mu}P_\nu - g_{\rho\nu}P_\mu),
+%\end{align*}
+%in addition to (\ref{eq:Lorentz:Algebra}). Quantum field theories built upon this symmetry are known as conformal field theories and have the property that they do not renormalize.
+%
+%\item \textsc{Hints of the AdS/CFT correspondence}: one of the most significant developments in theoretical physics over the past 15 years has been the AdS/CFT correspondence which relates the observables of a `very quantum' conformal field theory to that of a classical theory of gravity in a higher dimension. One can see a hint of this in the algebra of the conformal group. Suppose we start with a conformal field theory in $(d+1)$ dimensions. Write the generators of the conformal group in terms of $R_{ab}$ where $a,b \in \{-1,0,\cdots,d\}$.
+%\begin{align*}
+%R_{\mu\nu} &= S_{\mu\nu}\\
+%R_{(-1)\mu} &= \frac 12 (P_\mu - K_\mu)\\
+%R_{(-1)0} &= D\\
+%R_{0\mu} &= \frac 12 (P_\mu + K_\mu).
+%\end{align*}
+%
+%Show that these generators obey the generalization of (\ref{eq:Lorentz:Algebra}) to $(d+2)$ dimensions.
+%
+%% See Di Francesco
+%
+%%
+\end{enumerate}
+ 
+\item {\bf The Pauli-Lubanski vector} [10 points]
+
+% Refs: Quevedo notes, Gutowski notes, Wu Ki Tung, Jones book
+
+Recall from your childhood that irreducible representations of the rotation group $SO(3)$ were characterized by the value of the $\mathbf{J}^2$ operator. In general, quantities which characterize irreducible representations are called \textbf{Casimir operators}. From the way we derived the representations of the Lorentz group in class makes it should be clear that one of the Casimir operators is $P^2 = m^2$. The second Casimir operator is $W^2$, where $W^\mu$ is the Pauli-Lubanski vector,
+$$W^\mu = \frac 12 \epsilon_{\mu\nu\rho\sigma} S^{\rho\sigma} P^\nu,$$
+where $\epsilon_{\mu\nu\rho\sigma}$ is the totally antisymmetric tensor in four dimensions. 
+
+\begin{enumerate}
+\item Show that $W^\mu$ satisfies the following commutation relations,
+\begin{align*}
+	[W_\mu, P_\nu] &= 0\\
+	[W_\mu, S_{\rho\sigma}] &= ig_{\mu\nu} W_\sigma - i g_{\mu\sigma} W_\rho\\
+	[W_\mu, W_\nu] &= -i\epsilon_{\mu\nu\rho\sigma}W^\rho P^\sigma.
+\end{align*}
+\textit{Hint:} the following identities may be helpful:
+\begin{align*}
+\epsilon_{\mu\alpha\beta\gamma}\epsilon^{\mu\rho\sigma\tau}
+= -6 \delta^\rho_{[\alpha}\delta^\sigma_\beta\delta^\tau_{\gamma]} = -6 \delta^{[\rho}_\alpha\delta^\sigma_\beta\delta^{\tau]}_\gamma\\
+%
+\epsilon_{\mu\nu\alpha\beta}\epsilon^{\mu\nu\rho\sigma}
+=
+-4 \delta^\rho_{[\alpha}\delta^\sigma_{\beta]} = -4\delta^{[\rho}_\alpha\delta^{\sigma]}_\beta.
+\end{align*}
+The second identity is a little tedious but builds character.
+
+\item Using the above result, show that $W^\mu W_\mu$ indeed commutes with $P_\mu$ and $S_{\mu\nu}$ as required for a Casimir operator.
+
+\item Comment on the physical meaning of $W^\mu$ by explicitly writing out its components in terms of rotations and boosts. Consider two cases:
+\begin{itemize}
+\item a massive particle in its rest frame:  take $P_\mu \to (m,0,0,0)$
+\item a massless particle moving along the $\hat{z}$ axis: $P_\mu \to (E,0,0,-E)$
+\end{itemize}
+\end{enumerate}
+
+\item {\bf The Pauli matrices} [10 points]
+
+The Pauli matrices are
+\begin{align*}
+	\sigma^0 = 
+	\begin{pmatrix}
+		1 & 0\\
+		0 & 1
+	\end{pmatrix}
+	\quad
+	\sigma^1 = 
+	\begin{pmatrix}
+		0 & 1\\
+		1 & 0
+	\end{pmatrix}
+	\quad
+	\sigma^2 = 
+	\begin{pmatrix}
+		0 & -i\\
+		i & 0
+	\end{pmatrix}
+	\quad
+	\sigma^3 = 
+	\begin{pmatrix}
+		1 & 0\\
+		0 & -1
+	\end{pmatrix}.
+\end{align*}
+The these have indices $\sigma^\mu_{\alpha\dot{\beta}}$ while the barred Pauli matrices, $\bar{\sigma}^\mu = (\sigma^0, -\vec\sigma)$, have indices $\bar{\sigma}^{\mu\dot{\alpha}\beta}$. The two types of Pauli matrices are related by
+\begin{align}
+	\bar\sigma^{\mu\dot\alpha\alpha} = \epsilon^{\dot\alpha\dot\beta}\epsilon^{\alpha\beta}\sigma^\mu_{\phantom{\mu}\beta\dot\beta},
+\end{align}
+where our convention for the sign of $\epsilon$ is $\epsilon^{12} = \epsilon_{21} = 1$. Recall that dotted and undotted indices are different beasts ($\alpha \neq \dot\alpha$).
+
+\begin{enumerate}
+\item Prove the following identities
+\begin{align*}
+ (\sigma^\mu)_{\alpha\dot\beta} (\bar\sigma_\mu)^{\dot\gamma\delta} &= 2\delta^\delta_\alpha \delta^{\dot\gamma}_\beta\\
+ \text{Tr}(\sigma^\mu\bar\sigma^\nu) &= 2g^{\mu\nu}\\
+ (\sigma^\mu \bar\sigma^\nu + \sigma^\nu\bar\sigma^\mu)^{\phantom{\alpha}\beta}_{\alpha} &= 2\eta^{\mu\nu}\delta^\beta_\alpha.
+\end{align*}
+
+\item We may map vectors to $2\times2$ matrices via $V^\mu \to V_{\alpha\dot\beta} \equiv V_\mu \sigma^\mu_{\alpha\dot\beta}$. Use the above result to show that $V^\mu = \frac 12 (\bar\sigma^\mu)^{\dot\alpha\alpha}V_{\alpha\dot\alpha}$.
+
+\item Transformations of $V_{\alpha\dot\beta}$ by SL(2,$\mathbbm{C}$) matrices $N$ of the form $V \to N^\dag V N$ preserve the Minkowski norm $V^2$. Prove that we may map these SL(2,$\mathbbm{C}$) transformations to Lorentz transformations via
+$$\Lambda^\mu_{\phantom{\mu}\nu}(N) = \frac 12 \text{Tr} (\bar\sigma^\mu N\sigma_\nu N^\dag).$$
+Is this map one-to-one? \textit{Remark:} we have seen in class that the Lorentz group SO(3,1) is related to SU(2)$\times$SU(2), but this relation is neither an isomorphism nor a homomorphism. For example, SU(2)$\times$SU(2) while SO(3,1) is not. Further, the identification of two copies of the SU(2) algebra required writing combinations of the generators that  are manifestly not Hermitian. The correct statement is that the complexified Lie algebra of SO(3,1) is equivalent to the complexified algebra of SU(2)$\times$ SU(2). The complexification of SU(2)$\times$ SU(2) is the precisely  SL(2,$\mathbbm{C}$) and is known as the \textbf{universal cover} of the Lorentz group and has the nice property that it is simply connected. Spinors are not representations of SO(3,1), but rather its universal cover.
+
+\item Show that $\sigma^{\mu\nu} = \frac i4 (\sigma^\mu \bar\sigma^\nu - \sigma^\nu\bar\sigma^\mu)$ generates the Lorentz group.
+\end{enumerate}
+
+
+\end{enumerate}
+
+ 
+
+\end{document}

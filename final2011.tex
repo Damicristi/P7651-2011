@@ -1,0 +1,257 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{bbm}
+\usepackage{framed}
+\usepackage{setspace}
+\usepackage{slashed}
+
+\newcommand{\dbar}{d\mkern-6mu\mathchar'26} 
+
+
+\textwidth 6.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+\textheight 8.6in
+\topmargin -0.7in
+\pagestyle{empty}
+\begin{document}
+
+
+\vspace*{-1cm}
+\begin{center}
+{\LARGE \bf Relativistic Quantum Field Theory}
+
+\vspace*{0.5cm}
+{\Large Physics 7651, Fall 2011} \\
+\vspace*{0.5cm}
+{\Large {\bf Final Exam}\\
+\vspace*{1cm}
+%Due: To Flip (PSB 432, or Physics Office Mailbox) by December 9}
+Please read the following instructions carefully}
+\end{center}
+
+% \begin{framed}
+% \noindent You have 24 hours to complete this exam. The \textit
+% \begin{enumerate}
+% 	\item The last day for homeworks to be submitted for grading is \textbf{December 9th}
+% 	\item You are \textit{not} allowed to work on this homework concurrently with the 24-hour take home final exam. The exam will include material up to the last class, you are encouraged to complete this homework before the exam.
+% 	\item There will be an office hour on \textit{Monday} December 5th from 4pm -- 5:30pm to discuss this homework and any questions about the course.
+% \end{enumerate}
+% \end{framed}
+
+\vspace{.25cm}
+
+\begin{spacing}{.55}
+\begin{enumerate}
+\item You have 24 hours to complete this exam. 
+\item Upon completion, please staple all pages together, place the exam back in its envelope, and return it directly to Flip in PSB 432.
+%
+\item The \textit{only} references allowed are Peskin \& Schr\"oeder, the lecture notes by Preskill and Coleman, your homework, homework solutions, and integral tables like Gradshteyn \& Ryzhik. (Official solutions may have minor errors---you are responsible for correcting them if you use these results!) If you use one of these sources, please provide a reference.
+\item You may \textit{not} consult outside references `for your homework' (e.g. Homework 13) while you are working on this exam.
+\item You may \textit{not} collaborate on this exam, not even with Google / Wikipedia / Siri or any other imaginary friends that you may have made while taking this course.
+\item \textbf{Write clearly and box your final answers}. We cannot give partial credit if we don't know where you went wrong. Trivial algebraic/arithmetic slips will be penalized much less than fundamental misunderstandings.
+\item There will be loop integrals on this exam which you will be asked to calculate using a hard cutoff. You may solve these by hand, appealing to an integral table, or using computer software. You should provide an appropriate reference for any result.
+\item If you require clarification, contact Flip at \texttt{pt267@cornell.edu}.
+\end{enumerate}
+\end{spacing}
+\vspace{.7 cm}
+
+\textsc{Please read and sign below}
+
+I have read and understand these rules to this exam and agree to abide by them.
+\vspace{2em}
+
+\line(1,0){250} 
+
+\textsc{Signature and Date}
+
+\vspace{2em}
+
+\line(1,0){250} 
+
+\textsc{Print name and Student ID number}
+
+\newpage
+
+\begin{enumerate}
+	
+	
+	\item {\bf Pion decay} [50 points]
+	
+	The dominant decay mode of the $\pi^+$ (pion) is into a $\mu^+$ (antimuon) and $\nu_\mu$ (muon neutrino). Assume that the only interactions of these particles is described by
+	\begin{align*}
+		\mathcal{L}_\text{Int} = (\partial_\lambda \pi) \bar\nu \gamma^\lambda (f+g\gamma_5)\mu + \text{ complex conjugate}.
+	\end{align*}
+	The muon and neutrino are Dirac fermions, the couplings $f$ and $g$ are complex numbers.
+	
+	\begin{enumerate}
+		\item Compute the decay width $\Gamma(\pi^+\to \bar\mu + \nu_\mu)$ to second order in the coupling constants (the lowest non-vanishing order) in terms of the coupling constants, the pion mass $m_\pi$, and the muon mass $m_\mu$. Assume the neutrino mass is zero. Assume the validity of the na\"ive Feynman rules for derivative interactions as explained in the homework.
+		\item  The neutrinos emitted in this process are experimentally observed to always have helicity $-1/2$. What does this imply for the ratio $f/g$?
+		\item A much less frequent decay mode of the $\pi^+$ is into a positron and an electron neutrino. Assume that this is caused by an interaction of the same form as above with the following replacements:
+		\begin{itemize}
+			\item Electron and electron neutrino fields replace the muon and muon neutrino
+			\item Couplings $f'$ and $g'$ replace $f$ and $g$
+		\end{itemize}
+		Electron neutrinos, like muon neutrinos, are massless and always have helicity $-1/2$. Use the following data to compute $|f'/f|$ to within 10\% accuracy:
+			\begin{align*}
+				m_\pi &= 140 \text{ MeV}\\
+				m_\mu &= 106 \text{ MeV}\\
+				m_e &= 0.51 \text{ MeV}\\
+				\frac{\Gamma(\pi^+\to \bar e \nu_e)}{\Gamma(\pi^+\to \bar \mu \nu_\mu)}
+				&= 1.23 \times 10^{-4}.
+			\end{align*}
+	\end{enumerate}
+	
+
+\vspace{.5em}
+
+
+\item {\bf Renormalization of Yukawa theory} [50 points]
+
+In Homework 13 you renormalized the two-point function in pseudoscalar Yukawa theory. In this problem we'll finish the job. 
+%\begin{align}
+%\mathcal L = \bar\Psi_0 (i\gamma^\mu-M_0) \partial_\mu \Psi_0 + \frac 12 (\partial\phi_0)^2 - \frac 12 m_0^2\phi_0^2-y_0\phi_0\bar\Psi_0 \Psi_0 + \frac{\lambda_0}{4!}\phi_0^4.
+%\end{align}
+\begin{align*}
+\mathcal L = \bar\Psi (i\gamma^\mu-M) \partial_\mu \Psi + \frac 12 (\partial\varphi)^2 - \frac 12 m^2\varphi^2-iy\varphi\bar\Psi\gamma^5 \Psi + \frac{\lambda}{4!}\varphi^4.
+\end{align*}
+%You may assume that $\Pi_\Psi(p^2)$ and $\Pi_\phi(p^2)$ have been calculated to the appropriate order in perturbation theory so that $Z_\Psi$, $Z_\phi$, and the mass counter-terms $\delta_M$ and $\delta_{m^2}$ are known. (You did them correctly in the homework, right?)
+We shall use renormalization conditions that fix $y$ and $\lambda$ when all external momenta vanish. (This will simplify your loop calculations.) Determine the counter-terms for the interaction terms, $\delta_y$ and $\delta_\lambda$, at one-loop order.
+
+
+
+%	\item {\bf Effective theory of a composite scalar} [55 points]
+%	
+%	In this problem we will study the theory of a complex scalar that is formed as a fermion--anti-fermion bound state. We will remain agnostic about the high-energy dynamics that generate the bound state and will describe the low-energy behavior using an effective theory. The theory at the high scale $\Lambda_P$ is written in terms of the Dirac fermion $\Psi$,
+%	\begin{align}
+%%		\mathcal L = \chi^* i\partial_\mu\bar\sigma^\mu\chi + \psi^* i \partial_\mu\sigma^\mu \psi + G(\chi^*\psi)(\psi^*\chi).
+%\mathcal L = \bar\Psi i\gamma^\mu \partial_\mu\Psi + G(\bar\Psi P_L \Psi)(\bar \Psi P_R \Psi),
+%		\label{eq:UV}
+%	\end{align}
+%	where $P_L = \frac 12 (1-\gamma^5)$ and $P_R = \frac 12 (1+\gamma^5)$ are chiral projection operators and $\bar\Psi = \Psi^\dag \gamma^0$. Note that $\Lambda_P$ is a \textit{physical} scale rather than an unphysical cutoff.
+%	\begin{enumerate}
+%		\item What is the dimension of the coupling $G$? The interaction term can be understood as coming from the exchange of a gauge boson of mass $\Lambda_P$ and momentum $q^2\ll \Lambda^2$. The amplitude for such an interaction (as you will see next semester) is
+%		\begin{align}
+%			\frac 12 g^2 \left(\bar\Psi \gamma^\mu P_L \Psi\right)
+%			\frac{g_{\mu\nu}}{q^2-\Lambda_P^2} 
+%			\left(\bar\Psi \gamma^\nu P_R \Psi\right).
+%			\label{eq:exchange}
+%		\end{align} 
+%		In the limit where $q^2 \ll \Lambda_P$, use `Fierz identities' to show that (\ref{eq:exchange}) reduces to (\ref{eq:UV}). What is $G$ in terms of $g$ and $\Lambda$ in this limit? \textbf{Hint:} it may be easier to write this using Weyl spinors and use the Pauli matrix identities from Homework 12. \textbf{Remark:} the validity of (\ref{eq:UV}) as an effective theory of (\ref{eq:exchange}) is not obvious; for the purposes of this exam take it as an assumption.
+%	\end{enumerate}
+%	We will explore this theory at scales much lower than $\Lambda_P$. As a trick, we will modify the Lagrangian by writing the composite scalar $\phi_0$ as a non-dynamical `auxiliary field' at the scale $\Lambda_P$. Renormalization effects coming from loops of the fermions will generate dynamics for $\phi_0$.
+%	\begin{enumerate}
+%		\item[(b)] We rewrite (\ref{eq:UV}) in terms of an auxiliary field $\phi_0$:
+%		\begin{align}
+%			\mathcal L = \bar\Psi i\gamma^\mu \partial_\mu\Psi + (g \phi \bar\Psi P_L \Psi  + g\phi^*\bar\Psi P_R\Psi) - \Lambda_P^2 \phi^* \phi.
+%			\label{eq:auxiliary}
+%		\end{align}
+%		At this stage, note that $\phi_0$ is a strange field that has no kinetic term. This means that it is non-dynamical and can be solved algebraically through its equation of motion. Explicitly state the equation of motion for $\phi_0$ and then plug this back into (\ref{eq:auxiliary}) to show that it indeed reproduces (\ref{eq:UV}).
+%		\end{enumerate}
+%		In order to incorporate the dynamics of the composite scalar, we write the Lagrangian in the following form:
+%		\begin{align}
+%			\mathcal L =& \bar\Psi i\gamma^\mu \partial_\mu\Psi + (g \phi_0 \bar\Psi P_L \Psi  + g\phi_0^*\bar\Psi P_R\Psi)
+%			%\nonumber \\&
+%			+ Z_0 |\partial \phi_0|^2 - m_0^2 \phi_0^*\phi_0 - \frac{\lambda_0}{2}|\phi_0^*\phi_0|^2.
+%			\label{eq:effective}
+%		\end{align}
+%		At the scale $\Lambda_P$, we choose renormalization conditions such that (\ref{eq:effective}) matches (\ref{eq:auxiliary}). For example, at tree level, $m_0^2 = \Lambda_P^2$ and $Z_0 =\lambda_0=0$. We will see shortly that loops generate non-zero contributes to these terms so that $\phi_0$ becomes a dynamical field. Thus, at scales $\mu<\Lambda_P$, we can treat $\phi_0$ as if it were a fundamental complex scalar in our theory and calculate using (\ref{eq:effective}). We will now renormalize the $\phi_0$ sector of the theory in the ``fermion bubble approximation'' wherein we only consider loops that only contain fermion lines and ignore any loop with an internal scalar line. \textbf{Remark:} for the purposes of this exam, do not worry about the validity of this approximation.
+%		\begin{enumerate}
+%		%%%
+%		\item[(c)]		Draw the loop diagrams that contribute to the scalar 2-point and 4-point functions. Calculate the loop diagrams for the 1PI correction to the propagator and $2\to 2$ scattering.  Assume that all external states have momentum $p$. Separate the bare Lagrangian into a renormalized Lagrangian and a counter-term Lagrangian with respect to the scalar sector parameters,
+%		\begin{align}
+%			\mathcal L =& \cdots
+%			%\bar\Psi i\gamma^\mu \partial_\mu\Psi + (g \phi_0 \bar\Psi P_L \Psi  + g\phi_0^*\bar\Psi P_R\Psi)
+%			%\nonumber \\&
+%			+ (Z+\delta_Z) |\partial \phi_0|^2 - (m^2+\delta_{m_0^2}) \phi_0^*\phi_0 - \frac{1}{2}(\lambda+\delta_{\lambda_0})|\phi_0^*\phi_0|^2.
+%			\label{eq:counterterms}
+%		\end{align}
+%		Recall that $\delta_Z, \delta_{m_0^2} \sim \mathcal O(g^2)$ and $\delta_\lambda \sim \mathcal O(g^4)$. These counter-terms are defined such that when $p^2=\Lambda_P^2$, (\ref{eq:effective}) matches (\ref{eq:auxiliary}). They should depend on both the unphysical cutoff $\Lambda$ (regularizing any divergences) and the renormalization scale $\Lambda_P$. The $\Lambda$ dependence should cancel in physical observables. Note that we have not yet canonically normalized the field $\phi_0$. What are the one-loop values of $Z$, $m'^2$, and $\lambda'$ at a scale $\mu <\Lambda$?
+%		\item[(d)] Finally, write down the physical couplings at the scale $\mu$ by canonically normalizing the fields. Write out the values of the physical coupling constants, $g_P = g^2/Z$, $m^2_P = m^2 / Z$, etc. \textbf{Remark:} we never calculated any loops to correct the Yukawa coupling $g$, but it is still rescaled at this step. 
+%		%%%
+
+%	\end{enumerate}
+
+\end{enumerate}
+
+\noindent All done? \textit{Please} make sure your answers are written legibly with answers boxed. It has been a pleasure having you part of the course. Best wishes with your remaining exams and have a good winter break.
+
+
+
+\newpage
+
+\vspace*{-1cm}
+\begin{center}
+{\LARGE \bf Relativistic Quantum Field Theory}
+
+\vspace*{0.5cm}
+{\Large Physics 7651, Fall 2011} \\
+\vspace*{0.5cm}
+{\Large {\bf Final Exam}\\
+\vspace*{1cm}
+%Due: To Flip (PSB 432, or Physics Office Mailbox) by December 9}
+Please read the following instructions carefully}
+\end{center}
+
+% \begin{framed}
+% \noindent You have 24 hours to complete this exam. The \textit
+% \begin{enumerate}
+% 	\item The last day for homeworks to be submitted for grading is \textbf{December 9th}
+% 	\item You are \textit{not} allowed to work on this homework concurrently with the 24-hour take home final exam. The exam will include material up to the last class, you are encouraged to complete this homework before the exam.
+% 	\item There will be an office hour on \textit{Monday} December 5th from 4pm -- 5:30pm to discuss this homework and any questions about the course.
+% \end{enumerate}
+% \end{framed}
+
+\vspace{.25cm}
+
+\begin{spacing}{.55}
+\begin{enumerate}
+\item You have 24 hours to complete this exam. 
+\item Upon completion, please staple all pages together, place the exam back in its envelope, and return it directly to Flip in PSB 432.
+%
+\item The \textit{only} references allowed are Peskin \& Schr\"oeder, the lecture notes by Preskill and Coleman, your homework, homework solutions, and integral tables like Gradshteyn \& Ryzhik. (Official solutions may have minor errors---you are responsible for correcting them if you use these results!) If you use one of these sources, please provide a reference.
+\item You may \textit{not} consult outside references `for your homework' (e.g. Homework 13) while you are working on this exam.
+\item You may \textit{not} collaborate on this exam, not even with Google / Wikipedia / Siri or any other imaginary friends that you may have made while taking this course.
+\item \textbf{Write clearly and box your final answers}. We cannot give partial credit if we don't know where you went wrong. Trivial algebraic/arithmetic slips will be penalized much less than fundamental misunderstandings.
+\item There will be loop integrals on this exam which you will be asked to calculate using a hard cutoff. You may solve these by hand, appealing to an integral table, or using computer software. You should provide an appropriate reference for any result.
+\item If you require clarification, contact Flip at \texttt{pt267@cornell.edu}.
+\end{enumerate}
+\end{spacing}
+
+\vspace{.7 cm}
+
+\noindent Please indicate the time and date when you opened and sealed this envelope. 
+%
+By signing this document you agree that you have completed the exam within the allowed time.
+%
+Upon completion, please bring this envelope to Flip in PSB 432.
+\vspace{2em}
+
+\line(1,0){220} \qquad \line(1,0){220} 
+
+\textsc{Envelope opened (time and date)}
+\hspace{1.1cm}
+\textsc{Envelope sealed (time and date)}
+
+
+%\vspace{2em}
+%
+%\line(1,0){250} 
+%
+%\textsc{Envelope sealed (time and date)}
+
+
+\vspace{2em}
+
+\line(1,0){220} 
+
+\textsc{Signature}
+
+
+
+\end{document}
